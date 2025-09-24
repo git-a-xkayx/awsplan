@@ -1,0 +1,558 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>AWS CCP — Enhanced 14-Day Two-Slot Study Plan (with progress & strategies)</title>
+<style>
+  :root{--bg:#0f1724;--card:#071227;--muted:#9aa4b2;--accent:#1fb6ff}
+  body{font-family:Inter, Roboto, Arial, sans-serif; margin:0; color:#e6eef6; background:linear-gradient(180deg,#071733,#041025);}
+  header{padding:18px; text-align:center}
+  h1{margin:0;font-size:20px}
+  .lead{color:var(--muted); margin-top:6px}
+  .container{max-width:1000px;margin:12px auto;padding:16px}
+  .card{background:rgba(255,255,255,0.03); border-radius:12px; padding:14px; margin-bottom:12px; border:1px solid rgba(255,255,255,0.02)}
+  .grid{display:grid; grid-template-columns:1fr 320px; gap:16px}
+  .day{padding:12px; border-radius:10px; background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005)); margin-bottom:10px}
+  .slot{display:flex; gap:10px; align-items:flex-start; margin-bottom:8px}
+  .time{min-width:90px; color:var(--accent); font-weight:700}
+  ul{color:var(--muted); margin:6px 0 10px 18px}
+  a{color:#9be7ff}
+  .small{font-size:13px; color:var(--muted)}
+  .controls{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px; justify-content:center}
+  button{background:rgba(255,255,255,0.03); color:var(--muted); border-radius:8px; padding:8px 10px; border:1px solid rgba(255,255,255,0.02); cursor:pointer}
+  .chk{width:18px;height:18px;cursor:pointer}
+  details{margin-top:8px}
+  pre{background:#061025;padding:10px;border-radius:8px;overflow:auto}
+  @media (max-width:900px){.grid{grid-template-columns:1fr} .slot{flex-direction:column; align-items:flex-start}}
+</style>
+</head>
+<body>
+<header>
+  <h1>AWS Certified Cloud Practitioner — Enhanced 14-Day Two-Slot Study Plan</h1>
+  <p class="lead">Two daily slots: Morning (phone/tablet — reading & spaced-repetition) and Evening (laptop — labs, demos, practice). Progress saved locally (localStorage). This enhanced plan adds study strategy, tracking, and test-day checklist.</p>
+</header>
+
+<div class="container">
+
+  <div class="card controls">
+    <button id="clearAll">Clear progress</button>
+    <button id="exportBtn">Export progress</button>
+    <button id="importBtn">Import progress</button>
+    <input type="file" id="importFile" style="display:none" />
+    <div class="small">Tip: export to back up your progress file; import to restore.</div>
+  </div>
+
+  <div class="grid">
+
+    <main class="card" id="mainCard">
+      <h2 style="margin-top:0">Is this plan realistic?</h2>
+      <p class="small">Short answer: <strong>Yes, realistic for an experienced 15+ year developer</strong>, provided disciplined focus, daily practice questions, and at least 2–3 full timed mocks (65-question equivalent) before booking. The plan assumes ~3–5 hours/day split into two ≤2.5-hr slots. The candidate's software background maps well to exam concepts — the exam rewards breadth and question-reading skill more than deep infra experience.</p>
+
+      <h3>Key risks & mitigations</h3>
+      <ul>
+        <li><strong>Risk:</strong> Rushing hands-on labs — mitigation: focus on small, repeatable console tasks (S3, EC2, Lambda, IAM) and delete resources immediately.</li>
+        <li><strong>Risk:</strong> Overreliance on one practice bank — mitigation: use at least 2-3 different practice sources to learn varied question wording.</li>
+        <li><strong>Risk:</strong> Burnout — mitigation: take short breaks, keep mornings lighter (flashcards, 20–30 mins), reserve evenings for practice/labs.</li>
+      </ul>
+
+      <h3>What I added to the plan</h3>
+      <ul>
+        <li>Daily <strong>spaced repetition</strong> / Anki-style flashcard step each morning (15–25 min).</li>
+        <li>Explicit <strong>error log</strong> task: after every practice set, log wrong answers and classify by concept (IAM, pricing, storage, networking, wording trap).</li>
+        <li>Minimum of <strong>3 full timed practice exams</strong> (Days 11,12,13 slots adjusted) from different providers or mixes of official + community sets.</li>
+        <li>Exam-day & online proctoring checklist (ID, environment, system check, timers, snacks).</li>
+        <li>Test-taking strategies: time management, elimination, when to mark+skip, reading for qualifiers (NOT, EXCEPT), and how to use the review feature.</li>
+        <li>Contingency: immediate 3-day remediation plan if mock scores < 70% at Day 12.</li>
+      </ul>
+
+      <h3>Time allocation by domain (approx.)</h3>
+      <p class="small">Allocate study time roughly proportional to exam weights but also account for personal weaknesses:</p>
+      <pre>Cloud Concepts: 20% | Security: 25% | Technology/Core services: 30% | Billing & Pricing: 25%</pre>
+      <p class="small">Over 42 total study hours, that maps roughly to: Concepts 8–10 hrs, Security 10–12 hrs, Technology 12–14 hrs, Billing 10–12 hrs (distributed across 14 days).</p>
+
+      <h2 style="margin-top:12px">Daily schedule (enhanced) — two slots per day with added tasks</h2>
+      <p class="small">Each day still follows the morning/evening pattern but includes explicit flashcard time, error-log, and mock exams. Checkboxes persist in localStorage.</p>
+
+      <!-- Day 0 -->
+      <div class="day" id="day-0" data-day="0">
+        <h3><input class="chk" type="checkbox" data-daychk="0"> Before Day 1 — Setup</h3>
+        <div class="slot"><div class="time">Any</div><div>
+          <ul>
+            <li><label><input class="chk" type="checkbox" data-key="day0_task1"> Create/verify AWS account + enable MFA & create IAM admin</label></li>
+            <li><label><input class="chk" type="checkbox" data-key="day0_task2"> Set AWS budget alerts + enable billing alerts</label></li>
+            <li><label><input class="chk" type="checkbox" data-key="day0_task3"> Bookmark exam guide, sample Qs, Skill Builder course</label></li>
+          </ul>
+          <div class="small">Links: <a href="https://aws.amazon.com/free/" target="_blank">AWS Free Tier</a> · <a href="https://d1.awsstatic.com/training-and-certification/docs-cloud-practitioner/AWS-Certified-Cloud-Practitioner_Exam-Guide.pdf" target="_blank">Exam Guide</a></div>
+        </div></div>
+      </div>
+
+
+      <div class="day" id="day-1" data-day="1">
+        <h3><input class="chk" type="checkbox" data-daychk="1"> Day 1 — Orientation & Blueprint</h3>
+        
+        <div class="slot" data-day="1" data-slot="1">
+          <div class="time">Morning</div>
+          <div>
+            <label><input class="chk" type="checkbox" data-slotchk="day1_slot1"> <strong>Session tasks</strong></label>
+            <ul>
+              <li><label><input class="chk" type="checkbox" data-key="day1_slot1_task1"> 15–20 min: Spaced-repetition flashcards / Anki review (create cards from mistakes)</label></li>
+<li><label><input class="chk" type="checkbox" data-key="day1_slot1_task2"> Read the Exam Guide (PDF) — note domain weights and make a 1-page checklist. (Link)</label></li>
+<li><label><input class="chk" type="checkbox" data-key="day1_slot1_task3"> Resource: Exam Guide PDF</label></li>
+
+            </ul><div class="small">Resource: <a href="https://d1.awsstatic.com/training-and-certification/docs-cloud-practitioner/AWS-Certified-Cloud-Practitioner_Exam-Guide.pdf" target="_blank">https://d1.awsstatic.com/training-and-certification/docs-cloud-practitioner/AWS-Certified-Cloud-Practitioner_Exam-Guide.pdf</a></div></div></div>
+        <div class="slot" data-day="1" data-slot="2">
+          <div class="time">Evening</div>
+          <div>
+            <label><input class="chk" type="checkbox" data-slotchk="day1_slot2"> <strong>Session tasks</strong></label>
+            <ul>
+              <li><label><input class="chk" type="checkbox" data-key="day1_slot2_task1"> Start AWS Cloud Practitioner Essentials (Skill Builder) and take notes mapped to exam domains.</label></li>
+<li><label><input class="chk" type="checkbox" data-key="day1_slot2_task2"> After practice: add incorrect Qs to Error Log and tag by topic (IAM, Pricing, S3, VPC)</label></li>
+
+            </ul><div class="small">Resource: <a href="https://skillbuilder.aws/learn/94T2BEN85A/aws-cloud-practitioner-essentials/8D79F3AVR7" target="_blank">https://skillbuilder.aws/learn/94T2BEN85A/aws-cloud-practitioner-essentials/8D79F3AVR7</a></div></div></div>
+      </div>
+
+      <div class="day" id="day-2" data-day="2">
+        <h3><input class="chk" type="checkbox" data-daychk="2"> Day 2 — Cloud Concepts & Global Infra</h3>
+        
+        <div class="slot" data-day="2" data-slot="1">
+          <div class="time">Morning</div>
+          <div>
+            <label><input class="chk" type="checkbox" data-slotchk="day2_slot1"> <strong>Session tasks</strong></label>
+            <ul>
+              <li><label><input class="chk" type="checkbox" data-key="day2_slot1_task1"> 15–20 min: Spaced-repetition flashcards / Anki review (create cards from mistakes)</label></li>
+<li><label><input class="chk" type="checkbox" data-key="day2_slot1_task2"> Skill Builder: cloud basics — what is cloud, IaaS/PaaS/SaaS, Regions vs AZs vs Edge</label></li>
+
+            </ul><div class="small">Resource: <a href="https://skillbuilder.aws/learn/94T2BEN85A/aws-cloud-practitioner-essentials/8D79F3AVR7" target="_blank">https://skillbuilder.aws/learn/94T2BEN85A/aws-cloud-practitioner-essentials/8D79F3AVR7</a></div></div></div>
+        <div class="slot" data-day="2" data-slot="2">
+          <div class="time">Evening</div>
+          <div>
+            <label><input class="chk" type="checkbox" data-slotchk="day2_slot2"> <strong>Session tasks</strong></label>
+            <ul>
+              <li><label><input class="chk" type="checkbox" data-key="day2_slot2_task1"> Finish modules; read 'Overview of Amazon Web Services' whitepaper for examples and business value.</label></li>
+<li><label><input class="chk" type="checkbox" data-key="day2_slot2_task2"> After practice: add incorrect Qs to Error Log and tag by topic (IAM, Pricing, S3, VPC)</label></li>
+
+            </ul><div class="small">Resource: <a href="https://docs.aws.amazon.com/whitepapers/latest/aws-overview/introduction.html" target="_blank">https://docs.aws.amazon.com/whitepapers/latest/aws-overview/introduction.html</a></div></div></div>
+      </div>
+
+      <div class="day" id="day-3" data-day="3">
+        <h3><input class="chk" type="checkbox" data-daychk="3"> Day 3 — Compute & Storage (S3, EC2, Lambda)</h3>
+        
+        <div class="slot" data-day="3" data-slot="1">
+          <div class="time">Morning</div>
+          <div>
+            <label><input class="chk" type="checkbox" data-slotchk="day3_slot1"> <strong>Session tasks</strong></label>
+            <ul>
+              <li><label><input class="chk" type="checkbox" data-key="day3_slot1_task1"> 15–20 min: Spaced-repetition flashcards / Anki review (create cards from mistakes)</label></li>
+<li><label><input class="chk" type="checkbox" data-key="day3_slot1_task2"> Watch Skill Builder/ExamPro segments on S3, EC2, Lambda.</label></li>
+
+            </ul><div class="small">Resource: <a href="https://www.youtube.com/watch?v=NhDYbskXRgc" target="_blank">https://www.youtube.com/watch?v=NhDYbskXRgc</a></div></div></div>
+        <div class="slot" data-day="3" data-slot="2">
+          <div class="time">Evening</div>
+          <div>
+            <label><input class="chk" type="checkbox" data-slotchk="day3_slot2"> <strong>Session tasks</strong></label>
+            <ul>
+              <li><label><input class="chk" type="checkbox" data-key="day3_slot2_task1"> Create an S3 bucket, upload an object, add a lifecycle rule.</label></li>
+<li><label><input class="chk" type="checkbox" data-key="day3_slot2_task2"> Launch a Free-Tier EC2 instance (stop & terminate).</label></li>
+<li><label><input class="chk" type="checkbox" data-key="day3_slot2_task3"> Create a simple Lambda function (Hello World).</label></li>
+<li><label><input class="chk" type="checkbox" data-key="day3_slot2_task4"> After practice: add incorrect Qs to Error Log and tag by topic (IAM, Pricing, S3, VPC)</label></li>
+
+            </ul><div class="small">Resource: <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/GetStartedWithS3.html" target="_blank">https://docs.aws.amazon.com/AmazonS3/latest/userguide/GetStartedWithS3.html</a></div></div></div>
+      </div>
+
+      <div class="day" id="day-4" data-day="4">
+        <h3><input class="chk" type="checkbox" data-daychk="4"> Day 4 — Networking & VPC basics</h3>
+        
+        <div class="slot" data-day="4" data-slot="1">
+          <div class="time">Morning</div>
+          <div>
+            <label><input class="chk" type="checkbox" data-slotchk="day4_slot1"> <strong>Session tasks</strong></label>
+            <ul>
+              <li><label><input class="chk" type="checkbox" data-key="day4_slot1_task1"> 15–20 min: Spaced-repetition flashcards / Anki review (create cards from mistakes)</label></li>
+<li><label><input class="chk" type="checkbox" data-key="day4_slot1_task2"> Read VPC concepts (subnets, public vs private, security groups).</label></li>
+
+            </ul><div class="small">Resource: <a href="https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html" target="_blank">https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html</a></div></div></div>
+        <div class="slot" data-day="4" data-slot="2">
+          <div class="time">Evening</div>
+          <div>
+            <label><input class="chk" type="checkbox" data-slotchk="day4_slot2"> <strong>Session tasks</strong></label>
+            <ul>
+              <li><label><input class="chk" type="checkbox" data-key="day4_slot2_task1"> Inspect default VPC; create a security group and view rules; sketch a VPC diagram.</label></li>
+<li><label><input class="chk" type="checkbox" data-key="day4_slot2_task2"> After practice: add incorrect Qs to Error Log and tag by topic (IAM, Pricing, S3, VPC)</label></li>
+
+            </ul><div class="small">Resource: <a href="https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html" target="_blank">https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html</a></div></div></div>
+      </div>
+
+      <div class="day" id="day-5" data-day="5">
+        <h3><input class="chk" type="checkbox" data-daychk="5"> Day 5 — Identity, Access & Security fundamentals</h3>
+        
+        <div class="slot" data-day="5" data-slot="1">
+          <div class="time">Morning</div>
+          <div>
+            <label><input class="chk" type="checkbox" data-slotchk="day5_slot1"> <strong>Session tasks</strong></label>
+            <ul>
+              <li><label><input class="chk" type="checkbox" data-key="day5_slot1_task1"> 15–20 min: Spaced-repetition flashcards / Anki review (create cards from mistakes)</label></li>
+<li><label><input class="chk" type="checkbox" data-key="day5_slot1_task2"> Study IAM basics and the Shared Responsibility Model.</label></li>
+
+            </ul><div class="small">Resource: <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html" target="_blank">https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html</a></div></div></div>
+        <div class="slot" data-day="5" data-slot="2">
+          <div class="time">Evening</div>
+          <div>
+            <label><input class="chk" type="checkbox" data-slotchk="day5_slot2"> <strong>Session tasks</strong></label>
+            <ul>
+              <li><label><input class="chk" type="checkbox" data-key="day5_slot2_task1"> Create an IAM user with console access & read-only policy; enable MFA on root account.</label></li>
+<li><label><input class="chk" type="checkbox" data-key="day5_slot2_task2"> After practice: add incorrect Qs to Error Log and tag by topic (IAM, Pricing, S3, VPC)</label></li>
+
+            </ul><div class="small">Resource: <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html" target="_blank">https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html</a></div></div></div>
+      </div>
+
+      <div class="day" id="day-6" data-day="6">
+        <h3><input class="chk" type="checkbox" data-daychk="6"> Day 6 — Databases & Monitoring</h3>
+        
+        <div class="slot" data-day="6" data-slot="1">
+          <div class="time">Morning</div>
+          <div>
+            <label><input class="chk" type="checkbox" data-slotchk="day6_slot1"> <strong>Session tasks</strong></label>
+            <ul>
+              <li><label><input class="chk" type="checkbox" data-key="day6_slot1_task1"> 15–20 min: Spaced-repetition flashcards / Anki review (create cards from mistakes)</label></li>
+<li><label><input class="chk" type="checkbox" data-key="day6_slot1_task2"> Read RDS vs DynamoDB basics and managed DB advantages.</label></li>
+
+            </ul><div class="small">Resource: <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_GettingStarted.html" target="_blank">https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_GettingStarted.html</a></div></div></div>
+        <div class="slot" data-day="6" data-slot="2">
+          <div class="time">Evening</div>
+          <div>
+            <label><input class="chk" type="checkbox" data-slotchk="day6_slot2"> <strong>Session tasks</strong></label>
+            <ul>
+              <li><label><input class="chk" type="checkbox" data-key="day6_slot2_task1"> View RDS/DynamoDB consoles; explore CloudWatch metrics for EC2.</label></li>
+<li><label><input class="chk" type="checkbox" data-key="day6_slot2_task2"> After practice: add incorrect Qs to Error Log and tag by topic (IAM, Pricing, S3, VPC)</label></li>
+
+            </ul><div class="small">Resource: <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html" target="_blank">https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html</a></div></div></div>
+      </div>
+
+      <div class="day" id="day-7" data-day="7">
+        <h3><input class="chk" type="checkbox" data-daychk="7"> Day 7 — Billing, Pricing Models & Support Plans</h3>
+        
+        <div class="slot" data-day="7" data-slot="1">
+          <div class="time">Morning</div>
+          <div>
+            <label><input class="chk" type="checkbox" data-slotchk="day7_slot1"> <strong>Session tasks</strong></label>
+            <ul>
+              <li><label><input class="chk" type="checkbox" data-key="day7_slot1_task1"> 15–20 min: Spaced-repetition flashcards / Anki review (create cards from mistakes)</label></li>
+<li><label><input class="chk" type="checkbox" data-key="day7_slot1_task2"> Read 'How AWS Pricing Works' (on-demand, reserved, savings, spot).</label></li>
+
+            </ul><div class="small">Resource: <a href="https://docs.aws.amazon.com/whitepapers/latest/how-aws-pricing-works/abstract-and-introduction.html" target="_blank">https://docs.aws.amazon.com/whitepapers/latest/how-aws-pricing-works/abstract-and-introduction.html</a></div></div></div>
+        <div class="slot" data-day="7" data-slot="2">
+          <div class="time">Evening</div>
+          <div>
+            <label><input class="chk" type="checkbox" data-slotchk="day7_slot2"> <strong>Session tasks</strong></label>
+            <ul>
+              <li><label><input class="chk" type="checkbox" data-key="day7_slot2_task1"> Use AWS Pricing Calculator and review support plans; create pricing flashcards.</label></li>
+<li><label><input class="chk" type="checkbox" data-key="day7_slot2_task2"> After practice: add incorrect Qs to Error Log and tag by topic (IAM, Pricing, S3, VPC)</label></li>
+
+            </ul><div class="small">Resource: <a href="https://calculator.aws/" target="_blank">https://calculator.aws/</a></div></div></div>
+      </div>
+
+      <div class="day" id="day-8" data-day="8">
+        <h3><input class="chk" type="checkbox" data-daychk="8"> Day 8 — Official Sample Questions + Practice Set #1</h3>
+        
+        <div class="slot" data-day="8" data-slot="1">
+          <div class="time">Morning</div>
+          <div>
+            <label><input class="chk" type="checkbox" data-slotchk="day8_slot1"> <strong>Session tasks</strong></label>
+            <ul>
+              <li><label><input class="chk" type="checkbox" data-key="day8_slot1_task1"> 15–20 min: Spaced-repetition flashcards / Anki review (create cards from mistakes)</label></li>
+<li><label><input class="chk" type="checkbox" data-key="day8_slot1_task2"> Attempt official sample questions (PDF); note tricky wording.</label></li>
+
+            </ul><div class="small">Resource: <a href="https://d1.awsstatic.com/training-and-certification/docs-cloud-practitioner/AWS-Certified-Cloud-Practitioner_Sample-Questions.pdf" target="_blank">https://d1.awsstatic.com/training-and-certification/docs-cloud-practitioner/AWS-Certified-Cloud-Practitioner_Sample-Questions.pdf</a></div></div></div>
+        <div class="slot" data-day="8" data-slot="2">
+          <div class="time">Evening</div>
+          <div>
+            <label><input class="chk" type="checkbox" data-slotchk="day8_slot2"> <strong>Session tasks</strong></label>
+            <ul>
+              <li><label><input class="chk" type="checkbox" data-key="day8_slot2_task1"> 50–60 timed practice questions from ExamPro/community banks; review errors.</label></li>
+<li><label><input class="chk" type="checkbox" data-key="day8_slot2_task2"> After practice: add incorrect Qs to Error Log and tag by topic (IAM, Pricing, S3, VPC)</label></li>
+
+            </ul><div class="small">Resource: <a href="https://www.youtube.com/watch?v=NhDYbskXRgc" target="_blank">https://www.youtube.com/watch?v=NhDYbskXRgc</a></div></div></div>
+      </div>
+
+      <div class="day" id="day-9" data-day="9">
+        <h3><input class="chk" type="checkbox" data-daychk="9"> Day 9 — Review Weak Spots</h3>
+        
+        <div class="slot" data-day="9" data-slot="1">
+          <div class="time">Morning</div>
+          <div>
+            <label><input class="chk" type="checkbox" data-slotchk="day9_slot1"> <strong>Session tasks</strong></label>
+            <ul>
+              <li><label><input class="chk" type="checkbox" data-key="day9_slot1_task1"> Flashcard pass for missed concepts.</label></li>
+
+            </ul></div></div>
+        <div class="slot" data-day="9" data-slot="2">
+          <div class="time">Evening</div>
+          <div>
+            <label><input class="chk" type="checkbox" data-slotchk="day9_slot2"> <strong>Session tasks</strong></label>
+            <ul>
+              <li><label><input class="chk" type="checkbox" data-key="day9_slot2_task1"> Revisit official docs or Skill Builder for weak areas; re-do missed clusters.</label></li>
+<li><label><input class="chk" type="checkbox" data-key="day9_slot2_task2"> After practice: add incorrect Qs to Error Log and tag by topic (IAM, Pricing, S3, VPC)</label></li>
+
+            </ul><div class="small">Resource: <a href="https://skillbuilder.aws/learn/94T2BEN85A/aws-cloud-practitioner-essentials/8D79F3AVR7" target="_blank">https://skillbuilder.aws/learn/94T2BEN85A/aws-cloud-practitioner-essentials/8D79F3AVR7</a></div></div></div>
+      </div>
+
+      <div class="day" id="day-10" data-day="10">
+        <h3><input class="chk" type="checkbox" data-daychk="10"> Day 10 — Heavy Focus: Security & Technology</h3>
+        
+        <div class="slot" data-day="10" data-slot="1">
+          <div class="time">Morning</div>
+          <div>
+            <label><input class="chk" type="checkbox" data-slotchk="day10_slot1"> <strong>Session tasks</strong></label>
+            <ul>
+              <li><label><input class="chk" type="checkbox" data-key="day10_slot1_task1"> 15–20 min: Spaced-repetition flashcards / Anki review (create cards from mistakes)</label></li>
+<li><label><input class="chk" type="checkbox" data-key="day10_slot1_task2"> Skim Shared Responsibility model & IAM role vs user concepts.</label></li>
+
+            </ul><div class="small">Resource: <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html" target="_blank">https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html</a></div></div></div>
+        <div class="slot" data-day="10" data-slot="2">
+          <div class="time">Evening</div>
+          <div>
+            <label><input class="chk" type="checkbox" data-slotchk="day10_slot2"> <strong>Session tasks</strong></label>
+            <ul>
+              <li><label><input class="chk" type="checkbox" data-key="day10_slot2_task1"> Two timed 30–40 question sets focused on Security & core services; review errors.</label></li>
+<li><label><input class="chk" type="checkbox" data-key="day10_slot2_task2"> After practice: add incorrect Qs to Error Log and tag by topic (IAM, Pricing, S3, VPC)</label></li>
+
+            </ul></div></div>
+      </div>
+
+      <div class="day" id="day-11" data-day="11">
+        <h3><input class="chk" type="checkbox" data-daychk="11"> Day 11 — Billing Focus & Full Practice Exam</h3>
+        
+        <div class="slot" data-day="11" data-slot="1">
+          <div class="time">Morning</div>
+          <div>
+            <label><input class="chk" type="checkbox" data-slotchk="day11_slot1"> <strong>Session tasks</strong></label>
+            <ul>
+              <li><label><input class="chk" type="checkbox" data-key="day11_slot1_task1"> Pricing flashcards & support plans refresher.</label></li>
+
+            </ul><div class="small">Resource: <a href="https://docs.aws.amazon.com/whitepapers/latest/how-aws-pricing-works/abstract-and-introduction.html" target="_blank">https://docs.aws.amazon.com/whitepapers/latest/how-aws-pricing-works/abstract-and-introduction.html</a></div></div></div>
+        <div class="slot" data-day="11" data-slot="2">
+          <div class="time">Evening</div>
+          <div>
+            <label><input class="chk" type="checkbox" data-slotchk="day11_slot2"> <strong>Session tasks</strong></label>
+            <ul>
+              <li><label><input class="chk" type="checkbox" data-key="day11_slot2_task1"> Take a full timed practice exam (65-question sim if available).</label></li>
+<li><label><input class="chk" type="checkbox" data-key="day11_slot2_task2"> After practice: add incorrect Qs to Error Log and tag by topic (IAM, Pricing, S3, VPC)</label></li>
+
+            </ul></div></div>
+      </div>
+
+      <div class="day" id="day-12" data-day="12">
+        <h3><input class="chk" type="checkbox" data-daychk="12"> Day 12 — Targeted Remediation & Alternate Mock</h3>
+        
+        <div class="slot" data-day="12" data-slot="1">
+          <div class="time">Morning</div>
+          <div>
+            <label><input class="chk" type="checkbox" data-slotchk="day12_slot1"> <strong>Session tasks</strong></label>
+            <ul>
+              <li><label><input class="chk" type="checkbox" data-key="day12_slot1_task1"> 15–20 min: Spaced-repetition flashcards / Anki review (create cards from mistakes)</label></li>
+<li><label><input class="chk" type="checkbox" data-key="day12_slot1_task2"> Read 'Overview of AWS' whitepaper summary.</label></li>
+
+            </ul><div class="small">Resource: <a href="https://docs.aws.amazon.com/whitepapers/latest/aws-overview/introduction.html" target="_blank">https://docs.aws.amazon.com/whitepapers/latest/aws-overview/introduction.html</a></div></div></div>
+        <div class="slot" data-day="12" data-slot="2">
+          <div class="time">Evening</div>
+          <div>
+            <label><input class="chk" type="checkbox" data-slotchk="day12_slot2"> <strong>Session tasks</strong></label>
+            <ul>
+              <li><label><input class="chk" type="checkbox" data-key="day12_slot2_task1"> Take alternate provider's full sim; compile 1-page cheat-sheet.</label></li>
+<li><label><input class="chk" type="checkbox" data-key="day12_slot2_task2"> After practice: add incorrect Qs to Error Log and tag by topic (IAM, Pricing, S3, VPC)</label></li>
+
+            </ul><div class="small">Resource: <a href="https://aws.amazon.com/architecture/well-architected/" target="_blank">https://aws.amazon.com/architecture/well-architected/</a></div></div></div>
+      </div>
+
+      <div class="day" id="day-13" data-day="13">
+        <h3><input class="chk" type="checkbox" data-daychk="13"> Day 13 — Final Polish, Logistics & Light Practice</h3>
+        
+        <div class="slot" data-day="13" data-slot="1">
+          <div class="time">Morning</div>
+          <div>
+            <label><input class="chk" type="checkbox" data-slotchk="day13_slot1"> <strong>Session tasks</strong></label>
+            <ul>
+              <li><label><input class="chk" type="checkbox" data-key="day13_slot1_task1"> Quick flashcards pass; re-scan Exam Guide checklist.</label></li>
+
+            </ul><div class="small">Resource: <a href="https://d1.awsstatic.com/training-and-certification/docs-cloud-practitioner/AWS-Certified-Cloud-Practitioner_Exam-Guide.pdf" target="_blank">https://d1.awsstatic.com/training-and-certification/docs-cloud-practitioner/AWS-Certified-Cloud-Practitioner_Exam-Guide.pdf</a></div></div></div>
+        <div class="slot" data-day="13" data-slot="2">
+          <div class="time">Evening</div>
+          <div>
+            <label><input class="chk" type="checkbox" data-slotchk="day13_slot2"> <strong>Session tasks</strong></label>
+            <ul>
+              <li><label><input class="chk" type="checkbox" data-key="day13_slot2_task1"> 20–30 mixed questions; finalize booking via AWS Certification portal.</label></li>
+<li><label><input class="chk" type="checkbox" data-key="day13_slot2_task2"> After practice: add incorrect Qs to Error Log and tag by topic (IAM, Pricing, S3, VPC)</label></li>
+
+            </ul><div class="small">Resource: <a href="https://aws.amazon.com/certification/certified-cloud-practitioner/" target="_blank">https://aws.amazon.com/certification/certified-cloud-practitioner/</a></div></div></div>
+      </div>
+
+      <div class="day" id="day-14" data-day="14">
+        <h3><input class="chk" type="checkbox" data-daychk="14"> Day 14 — Light Review & Exam Day</h3>
+        
+        <div class="slot" data-day="14" data-slot="1">
+          <div class="time">Morning</div>
+          <div>
+            <label><input class="chk" type="checkbox" data-slotchk="day14_slot1"> <strong>Session tasks</strong></label>
+            <ul>
+              <li><label><input class="chk" type="checkbox" data-key="day14_slot1_task1"> Light flashcards and rest; no heavy cramming.</label></li>
+
+            </ul></div></div>
+        <div class="slot" data-day="14" data-slot="2">
+          <div class="time">Evening</div>
+          <div>
+            <label><input class="chk" type="checkbox" data-slotchk="day14_slot2"> <strong>Session tasks</strong></label>
+            <ul>
+              <li><label><input class="chk" type="checkbox" data-key="day14_slot2_task1"> 30–60 min warmup then take the exam; good luck!</label></li>
+<li><label><input class="chk" type="checkbox" data-key="day14_slot2_task2"> After practice: add incorrect Qs to Error Log and tag by topic (IAM, Pricing, S3, VPC)</label></li>
+
+            </ul><div class="small">Resource: <a href="https://aws.amazon.com/certification/" target="_blank">https://aws.amazon.com/certification/</a></div></div></div>
+      </div>
+
+      <details style="margin-top:10px"><summary>Study strategy & tracking templates</summary>
+        <div class="small" style="margin-top:8px">
+          <h4>Daily Error Log (recommended format)</h4>
+          <pre>{"date":"YYYY-MM-DD","question_id_or_source":"ExamPro #12","your_answer":"B","correct":"C","topic":"IAM","notes":"Confused role vs user; re-read IAM roles doc"}</pre>
+          <p class="small">Keep this as a plain text / Google Sheet / local file. After each practice set, add wrong answers and review them on the following morning's flashcard session.</p>
+
+          <h4>Feynman quick-check (5 min)</h4>
+          <p class="small">At the end of each evening session, pick the weakest topic and explain it out loud in simple terms as if teaching someone who knows nothing about cloud. If you can't, make a quick note and revisit tomorrow.</p>
+        </div>
+      </details>
+
+      <h3 style="margin-top:12px">Test-day & proctor checklist</h3>
+      <ul>
+        <li><strong>ID:</strong> Government ID matching your AWS Cert account name (passport or driver's license).</li>
+        <li><strong>Environment:</strong> Quiet, well-lit room, clean desk, no other people. Clear the desk of papers and devices unless allowed.</li>
+        <li><strong>System check:</strong> Do the Pearson VUE/PSI system check (camera, mic, browser) at least 24 hrs before.</li>
+        <li><strong>Timing:</strong> 90 minutes for 65 questions → ~1.38 mins/question. Aim to mark+skip hard questions and return if time.</li>
+        <li><strong>During exam:</strong> Read entire stem, note absolute qualifiers (always, never), watch for "EXCEPT"/"NOT". Use elimination.</li>
+        <li><strong>Logistics:</strong> Have water and a light snack ready; schedule exam when you are normally most alert (mid-morning or early afternoon recommended).</li>
+      </ul>
+
+      <h3>If you're below target at Day 12 (score &lt;70%) — 3-day remediation plan</h3>
+      <ol>
+        <li>Day A: Re-do core Skill Builder modules for your weakest domain + 50 targeted practice Qs on that domain.</li>
+        <li>Day B: Hands-on mini-labs for misunderstood services (S3 lifecycle, IAM role demo, VPC quick inspect) + 50 mixed practice Qs.</li>
+        <li>Day C: Full timed mock + review error log; if score still low, postpone exam by 7–10 days and repeat focused cycle.</li>
+      </ol>
+
+      
+      <details style="margin-top:8px"><summary>Free & high-quality practice exam providers (direct links)</summary>
+        <div class="small" style="margin-top:8px">
+          <p>Below are free (or offering free samplers) practice resources that many candidates find valuable. Use multiple sources to expose yourself to varied question wording.</p>
+          <ul>
+            <li><strong>AWS — Official sample questions & resources</strong> — start here. <br><a href="https://d1.awsstatic.com/training-and-certification/docs-cloud-practitioner/AWS-Certified-Cloud-Practitioner_Sample-Questions.pdf" target="_blank">Official sample questions (PDF)</a> · <a href="https://aws.amazon.com/certification/certified-cloud-practitioner/" target="_blank">Exam page & exam guide</a>.</li>
+            <li><strong>ExamPro / freeCodeCamp (YouTube)</strong> — free full video course and practice playlists; many candidates pair this with other mocks. <br><a href="https://www.youtube.com/watch?v=NhDYbskXRgc" target="_blank">ExamPro / freeCodeCamp video course (YouTube)</a>.</li>
+            <li><strong>Tutorials Dojo — Free Practice Sampler</strong> — offers a free 30-question timed sampler covering CCP topics. <br><a href="https://portal.tutorialsdojo.com/courses/free-aws-certified-cloud-practitioner-practice-exams-sampler/" target="_blank">Tutorials Dojo — Free Sampler</a>.</li>
+            <li><strong>ExamTopics</strong> — community-contributed question bank and explanations (use cautiously and cross-check answers). <br><a href="https://www.examtopics.com/exams/amazon/aws-certified-cloud-practitioner/" target="_blank">ExamTopics — Cloud Practitioner</a>.</li>
+            <li><strong>Whizlabs (free test available)</strong> — offers at least one free practice test and paid mocks; useful for variety. <br><a href="https://www.whizlabs.com/aws-certified-cloud-practitioner/" target="_blank">Whizlabs — Cloud Practitioner</a>.</li>
+            <li><strong>DigitalCloud.training</strong> — short free 20-question practice set with explanations; good quick checks. <br><a href="https://digitalcloud.training/aws-cloud-practitioner-free-practice-questions/" target="_blank">DigitalCloud Training — Free practice</a>.</li>
+            <li><strong>Kanan Nirav</strong> — free practice quizzes and explanations. <br><a href="https://kananinirav.com/practice-exam/exams.html" target="_blank">Kanan Nirav — Practice exams</a>.</li>
+            <li><strong>Community</strong> — r/AWSCertifications for tips and one-off free sets. <br><a href="https://www.reddit.com/r/AWSCertifications/" target="_blank">r/AWSCertifications</a>.</li>
+          </ul>
+          <p class="small">Tip: use at least two different providers' full mocks (e.g., Tutorials Dojo + ExamPro + Whizlabs sampler) to build familiarity with different phrasing and traps.</p>
+        </div>
+      </details>
+
+
+      <p class="small" style="margin-top:10px">Ready to export to PDF? Use your browser's Print → Save as PDF. Or download this single HTML for offline use.</p>
+
+    </main>
+
+    <aside class="card">
+      <h3 style="margin-top:0">Quick cheat items & bookmarks</h3>
+      <ul class="small">
+        <li>Exam Guide PDF</li>
+        <li>Skill Builder: Cloud Practitioner Essentials</li>
+        <li>AWS whitepapers: Overview, Pricing, Well-Architected</li>
+        <li>Hands-on docs: S3, EC2, Lambda, IAM, RDS, DynamoDB, VPC, CloudWatch</li>
+        <li>Practice: Official sample Qs + 3 different practice providers</li>
+      </ul>
+
+      <h4 style="margin-top:10px">One-page success checklist</h4>
+      <ul class="small">
+        <li>Completed Skill Builder course</li>
+        <li>At least 3 full timed mocks (≥75% goal)</li>
+        <li>Completed hands-on labs for S3/EC2/Lambda/IAM</li>
+        <li>Created and used an Error Log + Anki/flashcards daily</li>
+        <li>Booked exam and completed system check</li>
+      </ul>
+    </aside>
+
+  </div>
+
+  <footer class="card small">
+    Prepared for an experienced developer. Good luck — focus on practice questions and active recall; you'll be fine. 🚀
+  </footer>
+</div>
+
+<script>
+// Persistence & controls similar to previous implementation
+(function(){
+  function saveKey(k,v){ localStorage.setItem(k, v ? "true":"false"); }
+  function loadKey(k){ return localStorage.getItem(k) === "true"; }
+
+  document.addEventListener('DOMContentLoaded', function(){
+    // restore checkboxes
+    document.querySelectorAll('input[data-key]').forEach(cb=>{
+      const key = cb.getAttribute('data-key');
+      if(localStorage.getItem(key)!==null) cb.checked = loadKey(key);
+      cb.addEventListener('change', ()=> saveKey(key, cb.checked));
+    });
+    // slot checkboxes
+    document.querySelectorAll('input[data-slotchk]').forEach(sc=>{
+      const key = sc.getAttribute('data-slotchk');
+      if(localStorage.getItem(key)!==null) sc.checked = loadKey(key);
+      sc.addEventListener('change', ()=> {
+        saveKey(key, sc.checked);
+        // toggle child tasks
+        const slotDiv = sc.closest('.slot');
+        if(slotDiv){
+          slotDiv.querySelectorAll('input[data-key]').forEach(t=>{ t.checked = sc.checked; saveKey(t.getAttribute('data-key'), t.checked); });
+        }
+      });
+    });
+    // day checkboxes
+    document.querySelectorAll('input[data-daychk]').forEach(dc=>{
+      const day = dc.getAttribute('data-daychk');
+      const key = 'day_'+day+'_master';
+      if(localStorage.getItem(key)!==null) dc.checked = loadKey(key);
+      dc.addEventListener('change', ()=>{
+        saveKey(key, dc.checked);
+        const dayDiv = document.querySelector('.day[data-day="'+day+'"]');
+        if(dayDiv){
+          dayDiv.querySelectorAll('input[type=checkbox]').forEach(cb=>{
+            if(cb===dc) return;
+            // set and persist keys appropriately
+            cb.checked = dc.checked;
+            if(cb.hasAttribute('data-key')) saveKey(cb.getAttribute('data-key'), cb.checked);
+            if(cb.hasAttribute('data-slotchk')) saveKey(cb.getAttribute('data-slotchk'), cb.checked);
+          });
+        }
+      });
+    });
+
+    // wire export/import/clear
+    document.getElementById('clearAll').addEventListener('click', ()=>{
+      if(!confirm('Clear all progress?')) return;
+      Object.keys(localStorage).forEach(k=>{ if(k.startsWith('day') || k.startsWith('day_') || k.startsWith('slot')) localStorage.removeItem(k); });
+      document.querySelectorAll('input[type=checkbox]').forEach(cb=>cb.checked=false);
+    });
+
+    document.getElementById('exportBtn').addEventListener('click', ()=>{
+      const data = {};
+      Object.keys(localStorage).forEach(k=>{ if(k.startsWith('day')|| k.startsWith('slot')) data[k]=localStorage.getItem(k); });
+      const blob = new Blob([JSON.stringify(data,null,2)], {type:'application/json'});
+      const url = URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='aws_ccp_progress_enhanced.json'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+    });
+
+    document.getElementById('importBtn').addEventListener('click', ()=> document.getElementById('importFile').click());
+    document.getElementById('importFile').addEventListener('change', function(e){ const file=e.target.files[0]; if(!file) return; const r=new FileReader(); r.onload=function(ev){ try{ const obj=JSON.parse(ev.target.result); Object.keys(obj).forEach(k=>localStorage.setItem(k,obj[k])); alert('Imported. Reloading.'); location.reload(); }catch(err){ alert('Invalid JSON.'); } }; r.readAsText(file); });
+
+  });
+})(); // IIFE
+</script>
+</body>
+</html>
